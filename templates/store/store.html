@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="store-container container">
+    <div class="row">
+        <div class="col-lg-2 col-md-4 col-12">
+            <h3>Categories</h3>
+            <ul class="category-list">
+                <li><a href="{% url 'store' %}">ALL PRODUCTS</a></li>
+                {% for category in links %}
+                <li><a href="{{ category.get_url }}">{{ category.category_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-lg-10 col-md-8 col-12">
+            <p>Item({{ product_count }})</p>
+            <div class="product-list row">
+                
+                {% if products %}
+                {% for product in products %}
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <div class="product-item">
+                        <a href="{{ product.get_url }}">
+                            <img src="{{ product.product_images.url }}" alt="Product 1" class="img-fluid product-image">
+                            <div class="product-info">
+                                <h2 class="product-name">{{ product.product_name }}</h2>
+                                <p><strong>{{ product.product_gender | capfirst }}</strong></p>
+                                <p><strong>${{ product.product_price }}</strong></p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p>No product in here</p>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
