@@ -28,9 +28,13 @@
                         <i class="bi bi-heart fs-4 text-dark"></i>
                     </div>
                     <div class="navbar-toggler shadow-none border-0">
-                        <a href="" class="position-relative">
-                            <i class="bi bi-bag fs-4 text-dark"></i>
-                        </a>
+                      <a href="{% url 'cart' %}" class="position-relative">
+                          <i class="bi bi-bag fs-4 text-dark">
+                              <span id="cart-count" class="cart-count position-absolute badge rounded-pill">
+                                  {{ cart_count }}
+                              </span>
+                          </i>
+                      </a>
                     </div>
                     <div class="icon-header-bar">
                         <button class="navbar-toggler shadow-none border-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
