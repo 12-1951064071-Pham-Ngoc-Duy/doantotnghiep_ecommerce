@@ -13,7 +13,11 @@
             </ul>
         </div>
         <div class="col-lg-10 col-md-8 col-12">
+            {% if 'search' in request.path %}
+            <p>Search result item({{ product_count_result }})</p>
+            {% else %}
             <p>Item({{ product_count }})</p>
+            {% endif %}
             <div class="product-list row">
                 
                 {% if products %}

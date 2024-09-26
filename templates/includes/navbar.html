@@ -21,8 +21,12 @@
                         <i class="bi bi-search fs-4 text-dark" style="cursor: pointer"></i>
                     </div>
                     <div class="box-search-web position-relative ms-2 me-2">
-                        <i class="bi bi-search position-absolute fs-4 text-dark search-icon"></i>
-                        <input class="form-control ps-5" placeholder="Search">
+                        <form action="{% url 'search' %}" class="search" method="GET">
+                          <button type="submit" style="position: absolute; top: 55%; left: 0px; transform: translateY(-50%); border-radius: 50%; border: 0; background-color: transparent;">
+                            <i class="bi bi-search fs-4 text-dark search-icon"></i>
+                          </button>
+                          <input class="form-control ps-5" placeholder="Search" name="keyword">
+                        </form>
                     </div>
                     <div class="navbar-toggler shadow-none border-0 mt-1">
                         <i class="bi bi-heart fs-4 text-dark"></i>
@@ -30,7 +34,7 @@
                     <div class="navbar-toggler shadow-none border-0">
                       <a href="{% url 'cart' %}" class="position-relative">
                           <i class="bi bi-bag fs-4 text-dark">
-                              <span id="cart-count" class="cart-count position-absolute badge rounded-pill">
+                              <span id="cart-count" class="cart-count position-absolute-cart badge rounded-pill">
                                   {{ cart_count }}
                               </span>
                           </i>
@@ -46,10 +50,12 @@
             <div class="offcanvas-header">
                <!-- FORM SEARCH PRODUCT-->
                 <div class="position-relative w-100 me-2">
-                  <button type="submit" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); border-radius: 50%; border: 0; background-color: transparent;">
-                    <i class="bi bi-search fs-5" style="background-color: transparent; pointer-events: none"></i>
-                  </button>
-                  <input name="keyword" class="form-control ps-5" type="search" placeholder="Search" aria-label="Search" style="border-radius: 20px" />
+                  <form action="{% url 'search' %}" method="GET">
+                    <button type="submit" style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%); border-radius: 50%; border: 0; background-color: transparent;">
+                      <i class="bi bi-search fs-5" style="background-color: transparent; pointer-events: none"></i>
+                    </button>
+                    <input name="keyword" class="form-control ps-5" type="search" placeholder="Search" aria-label="Search" style="border-radius: 20px" />
+                  </form>
                 </div>
                 <!-- FORM SEARCH PRODUCT-->
               

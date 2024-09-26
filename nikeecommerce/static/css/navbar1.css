@@ -58,18 +58,11 @@
     min-width: 1.5rem;  /* Đảm bảo badge có kích thước tối thiểu */
     text-align: center;  /* Canh giữa số lượng */
 }
-  .position-absolute {
-    top: 57%;
+  .position-absolute-cart {
+    top: 50%;
     left:50%;
     transform: translate(-50%, -50%);  /* Căn giữa badge */
-}
-.position-absolute-store{
-    transform: translate(380%, 2%);
-}
-/* Điều chỉnh icon túi và đảm bảo kích thước badge không tràn ra ngoài */
-.bi-bag {
-    position: relative;
-    display: inline-block;
+    position: absolute;
 }
   @media (max-width: 1030px) {
     .icon-header-bar {
