@@ -160,15 +160,8 @@
                   </h6>
                 </div>
                 <div class="button-join-signin mt-4">
-                  <button class="btn btn-dark" style="border-radius: 15px">
-                    Join Us
-                  </button>
-                  <button
-                    class="btn btn-light"
-                    style="border: 1px solid gray; border-radius: 30px"
-                  >
-                    Sign In
-                  </button>
+                  <a href="{% url 'register' %}" class="btn btn-dark" style="border-radius: 15px">Join Us</a>
+                  <a href="{% url 'login' %}" class="btn btn-light" style="border: 1px solid gray; border-radius: 30px"> Sign In</a>
                 </div>
                 <div class="item-infor mt-4">
                   <ul class="navbar-nav justify-content-end flex-grow-1">
