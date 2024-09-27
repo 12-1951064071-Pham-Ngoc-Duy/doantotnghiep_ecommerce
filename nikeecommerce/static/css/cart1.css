@@ -100,6 +100,7 @@
 }
 .input-group-cart {
     border: none;
+    display: flex;
 }
 .input-group-cart button,
 .input-group-cart input{

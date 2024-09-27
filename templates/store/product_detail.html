@@ -53,13 +53,8 @@
                     {% if single_product.product_stock <= 0 %}
                     <h5 class="btn btn-danger">Out of stock</h5>
                     {% else %}
-                    {% if in_cart %}
-                    <a href="#" class="btn btn-success btn-add-to-bag">Added to Bag</a>
-                    <a href="{% url 'cart' %}" class="btn btn-success btn-add-to-bag">View</a>
-                    {% else %}
                     <button type="submit" class="btn btn-dark btn-add-to-bag">Add to Bag</button>
                     <button class="btn btn-outline-secondary btn-favourite">Favourite</button>
-                    {% endif %}
                     {% endif %}
                 </div>
                 </div>
