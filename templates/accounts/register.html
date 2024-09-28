@@ -1,78 +1,85 @@
-{% extends "base.html" %}
-{% load static %}
-
+{% extends "base.html" %} 
+{% load static %} 
 {% block content %}
-   <div class="container">
-    <div class="box-register">
-        <div class="form-container-register">
-            <h2 class="text-center mb-4">Register</h2>
-            <form action="{% url 'register' %}" method="POST">
-                {% csrf_token %}
-                <div class="input-row-register">
-                    <div class="input-group-register">
-                        <label for="first-name">First Name</label>
-                        {{ form.first_name }}
-                    </div>
-                    <div class="input-group-register">
-                        <label for="last-name">Last Name</label>
-                        {{ form.last_name }}
-                    </div>
-                </div>
-                <div class="input-group-register">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required>
-                </div>
-                <div class="input-group-register">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="input-group-register">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <div class="input-group-register">
-                    <label for="birth-day">Birth Day</label>
-                    <input type="date" id="birth-day" name="birth_day" required>
-                </div>
-                    <div class="input-group-register">
-                        <label for="country">Country</label>
-                        <select id="country" name="country" required>
-                            <option value="">Select Country</option>
-                            <option value="us">United States</option>
-                            <option value="vn">Vietnam</option>
-                            <!-- Add more options as needed -->
-                        </select>
-                    </div>
-                    <div class="input-group-register">
-                        <label for="city">City</label>
-                        <select id="city" name="city" required>
-                            <option value="">Select City</option>
-                            <option value="hn">Hanoi</option>
-                            <option value="hcm">Ho Chi Minh City</option>
-                            <!-- Add more options as needed -->
-                        </select>
-                    </div>
-                    <div class="input-group-register">
-                        <label for="village">Village</label>
-                        <select id="village" name="village" required>
-                            <option value="">Select Village</option>
-                            <option value="village1">Village 1</option>
-                            <option value="village2">Village 2</option>
-                            <!-- Add more options as needed -->
-                        </select>
-                    </div>
-                    <div style="float:right">
-                        <button class="btn btn-dark" type="submit">Register</button>
-                    </div>
-                    <br>
-                    <br>
-                    <hr>
-                    <div>
-                        <p class="text-center">Have an account? <a href="{% url 'login' %}">Log In</a></p>
-                    </div>
-            </form>
+<div class="container">
+  <div class="box-register">
+    <div class="form-container-register">
+      <h2 class="text-center mb-4">Register</h2>
+      <form action="{% url 'register' %}" method="POST">
+        {% csrf_token %}
+        <div class="input-row-register">
+          <div class="input-group-register">
+            <label for="first-name">First Name</label>
+            {{ form.first_name }}
+          </div>
+          <div class="input-group-register">
+            <label for="last-name">Last Name</label>
+            {{ form.last_name }}
+          </div>
         </div>
-    </div>
-   </div>
-{% endblock content %}
+        <div class="input-group-register">
+          <label for="email">Email</label>
+          {{ form.email }}
+        </div>
+        <div class="input-group-register">
+            <label for="phone_number">Phone Number</label>
+            {{ form.phone_number }}
+          </div>
+        <div class="input-group-register">
+          <label for="password">Password</label>
+          {{ form.password }}
+        </div>
+        <div class="input-group-register">
+          <label for="password">Confirm Password</label>
+          {{ form.confirm_password }}
+        </div>
+        <div class="input-group-register">
+          <label for="birth-day">Birth Day</label>
+          <input type="date" id="birth-day" name="birth_day" required />
+        </div>
+        <!-- Country -->
+        <label for="country">Country</label>
+        <select class="form-select mb-3" id="id_country" name="country">
+          <option value="">Select Country</option>
+          {% for country_code, country_name in form.country.field.choices %}
+          <option value="{{ country_code }}">{{ country_name }}</option>
+          {% endfor %}
+        </select>
 
+        <!-- City -->
+        <label for="city">City</label>
+        <select class="form-select mb-3" id="id_city" name="city" disabled>
+          <option value="">Select City</option>
+        </select>
+
+        <!-- Village -->
+        <label for="village">Village</label>
+        <select
+          class="form-select mb-3"
+          id="id_village"
+          name="village"
+          disabled
+        >
+          <option value="">Select Village</option>
+        </select>
+        <div class="input-group-register">
+          <label for="address">Address</label>
+          {{ form.address }}
+        </div>
+        <div style="float: right">
+          <button class="btn btn-dark" type="submit">Register</button>
+        </div>
+        <br />
+        <br />
+        <hr />
+        <div>
+          <p class="text-center">
+            Have an account? <a href="{% url 'login' %}">Log In</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
