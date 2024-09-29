@@ -40,3 +40,16 @@
 .input-row-register .input-group-register {
     width: 48%;
 }
+/* Thêm CSS cho viền màu đỏ khi có lỗi */
+.error-text {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+
+/* Thêm viền đỏ cho các trường có lỗi */
+.is-invalid {
+    border-color: red;
+  }
+  
+  

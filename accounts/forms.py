@@ -13,6 +13,16 @@ class RegistrationForm(forms.ModelForm):
         model = Account
         fields = ['first_name', 'last_name', 'phone_number', 'email', 'password', 'country', 'city', 'village', 'address']
 
+    def clean(self):
+        cleaned_data = super(RegistrationForm, self).clean()
+        password = cleaned_data.get('password')
+        confirm_password = cleaned_data.get('confirm_password')
+
+        if password != confirm_password:
+            raise forms.ValidationError(
+                "Password does not match!"
+            )
+
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
         self.fields['first_name'].widget.attrs['placeholder'] = 'Enter First Name'
@@ -29,11 +39,4 @@ class RegistrationForm(forms.ModelForm):
         # City and Village will be loaded dynamically so no need to set choices in form
         self.fields['city'].widget.attrs['disabled'] = True
         self.fields['village'].widget.attrs['disabled'] = True
-
-    def clean(self):
-        cleaned_data = super(RegistrationForm, self).clean()
-        password = cleaned_data.get('password')
-        confirm_password = cleaned_data.get('confirm_password')
-
-        if password != confirm_password:
-            raise forms.ValidationError("Passwords do not match!")
+    
