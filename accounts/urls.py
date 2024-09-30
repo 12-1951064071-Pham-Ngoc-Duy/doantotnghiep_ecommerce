@@ -7,4 +7,5 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('load-cities/', views.load_cities, name='ajax_load_cities'),
     path('load-villages/', views.load_villages, name='ajax_load_villages'),
+    path('activate/<uidb64>/<token>/', views.activate, name='activate')
 ]
