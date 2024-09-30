@@ -92,7 +92,7 @@
         <select class="form-select mb-3 {% if form.country.errors %}is-invalid{% endif %}" id="id_country" name="country">
           <option value="">Select Country</option>
           {% for country_code, country_name in form.country.field.choices %}
-          <option value="{{ country_code }}" {% if form.country.value == country_code %}selected{% endif %}>{{ country_name }}</option>
+          <option value="{{ country_code }}">{{ country_name }}</option>
           {% endfor %}
         </select>
         <!-- Hiển thị lỗi -->
@@ -124,6 +124,7 @@
           <label for="address">Address</label>
           <input type="text" name="address" id="address"
                  class="form-control {% if form.address.errors %}is-invalid{% endif %}"
+                 value="{{ form.address.value|default_if_none:'' }}"
                  placeholder="{{ form.address.field.widget.attrs.placeholder }}">
           <!-- Hiển thị lỗi -->
           {% if form.address.errors %}
@@ -131,6 +132,7 @@
           {% endif %}
         </div>
 
+        {% include "includes/alerts.html" %}
         <div style="float: right">
           <button class="btn btn-dark" type="submit">Register</button>
         </div>

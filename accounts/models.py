@@ -208,7 +208,7 @@ class Account(AbstractBaseUser):
     phone_number = models.CharField(max_length=50)
     date_of_birth = models.DateField(null=True, blank=True)
     address = models.CharField(max_length=255, blank=True)
-    country = models.CharField(max_length=50, choices=COUNTRY_CHOICES, default='Vietnam')
+    country = models.CharField(max_length=50, choices=COUNTRY_CHOICES)
     city = models.CharField(max_length=50, blank=True, null=True)
     village = models.CharField(max_length=50, blank=True, null=True)
 
