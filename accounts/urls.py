@@ -9,5 +9,8 @@ urlpatterns = [
     path('', views.dashboard, name='dashboard'),
     path('load-cities/', views.load_cities, name='ajax_load_cities'),
     path('load-villages/', views.load_villages, name='ajax_load_villages'),
-    path('activate/<uidb64>/<token>/', views.activate, name='activate')
+    path('activate/<uidb64>/<token>/', views.activate, name='activate'),
+    path('resetpassword_validate/<uidb64>/<token>/', views.resetpassword_validate, name='resetpassword_validate'),
+    path('forgotPassword/', views.forgotPassword, name='forgotPassword'),
+    path('resetPassword/', views.resetPassword, name='resetPassword'),
 ]
