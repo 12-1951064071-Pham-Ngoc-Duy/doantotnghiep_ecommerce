@@ -158,7 +158,7 @@ VILLAGE_CHOICES = {
 
 
 class MyAccountManager(BaseUserManager):
-    def create_user(self, first_name, last_name, username, email, phone_number=None, password=None, country=None, city=None, village=None, address=None):
+    def create_user(self, first_name, last_name, username, email, phone_number=None, date_of_birth=None, password=None, country=None, city=None, village=None, address=None):
         if not email:
             raise ValueError('User must have an email address')
         
@@ -171,6 +171,7 @@ class MyAccountManager(BaseUserManager):
             first_name=first_name,
             last_name=last_name,
             phone_number=phone_number,
+            date_of_birth=date_of_birth,
             country=country,        # Thêm country
             city=city,              # Thêm city
             village=village,        # Thêm village
@@ -180,7 +181,7 @@ class MyAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
     
-    def create_superuser(self, first_name, last_name, username, email, phone_number=None, password=None, country=None, city=None, village=None, address=None):
+    def create_superuser(self, first_name, last_name, username, email, phone_number=None, date_of_birth=None, password=None, country=None, city=None, village=None, address=None):
         user = self.create_user(
             email=self.normalize_email(email),
             username=username,
@@ -188,6 +189,7 @@ class MyAccountManager(BaseUserManager):
             first_name=first_name,
             last_name=last_name,
             phone_number=phone_number,
+            date_of_birth=date_of_birth,
             country=country,        # Thêm country
             city=city,              # Thêm city
             village=village,        # Thêm village
