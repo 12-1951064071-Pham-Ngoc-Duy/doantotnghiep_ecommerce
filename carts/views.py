@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from store.models import Product, Variation
 from .models import Cart, CartItem
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def _cart_id(request):
@@ -88,7 +89,35 @@ def remove_cart_item(request, product_id, cart_item_id):
     cart_item.delete()
     return redirect('cart')
 
-def cart(request, total=0, cart_item_quantity=0, cart_items=None):
+def cart(request, total=0, cart_item_quantity=0, cart_items=None, tax=0, grand_total=0):
+    try:
+        if request.user.is_authenticated:
+            cart_items = CartItem.objects.filter(user=request.user, cart_item_is_active=True)
+        else:
+            cart = Cart.objects.get(cart_id=_cart_id(request))
+            cart_items = CartItem.objects.filter(cart=cart, cart_item_is_active=True)
+        for cart_item in cart_items:
+            total += (cart_item.product.product_price * cart_item.cart_item_quantity)
+            cart_item_quantity += cart_item.cart_item_quantity
+        if cart_item_quantity > 1:
+            tax = 0
+        else:
+            tax = (2 * total) / 100
+        grand_total = total + tax
+    except ObjectDoesNotExist:
+        pass
+
+    context = {
+        'total': total,
+        'cart_item_quantity': cart_item_quantity,
+        'cart_items': cart_items,
+        'tax': tax if tax > 0 else 'Free',
+        'grand_total': grand_total,
+    }
+    return render(request, 'store/cart.html', context)
+
+@login_required(login_url='login')
+def checkout(request, total=0, cart_item_quantity=0, cart_items=None, tax = 0, grand_total=0):
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))
         cart_items = CartItem.objects.filter(cart=cart, cart_item_is_active=True)
@@ -110,4 +139,4 @@ def cart(request, total=0, cart_item_quantity=0, cart_items=None):
         'tax': tax if tax > 0 else 'Free',
         'grand_total': grand_total,
     }
-    return render(request, 'store/cart.html', context)
+    return render(request, 'store/checkout.html', context)

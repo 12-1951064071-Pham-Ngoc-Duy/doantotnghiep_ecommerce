@@ -68,7 +68,7 @@
             <p>Total</p>
             <p>$ {{ grand_total }}</p>
         </div>
-        <button class="checkout-button">Go to Checkout</button>
+        <a href="{% url 'checkout' %}"  class="btn btn-dark w-100">Go to Checkout</a>
     </div>
 </div>
 {% else %}
